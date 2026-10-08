@@ -294,25 +294,21 @@
     gsap.set(eyebrow,{opacity:0,x:-16});
     gsap.set(titleLines,{yPercent:115});
     gsap.set(copy,{opacity:0,y:20});
-    gsap.set(route.children[0],{opacity:0,x:-12});
-    gsap.set(route.querySelector('.route-line'),{scaleX:0,transformOrigin:'left center'});
-    gsap.set(route.children[2],{opacity:0,x:-10});
-    // The brief unfolds like a dossier; its route connects the two cities last.
+    gsap.set(route,{opacity:0,y:10});
+    // The brief unfolds like a dossier; its location note appears last.
     gsap.timeline({
       defaults:{ease:'power3.out'},
       scrollTrigger:{id:'brief-reveal',trigger:brief,start:'top 82%',once:true},
       onComplete:() => {
         gsap.set(brief,{clearProps:'clipPath'});
-        gsap.set([eyebrow,...titleLines,...copy,...route.children],{clearProps:'transform,opacity'});
+        gsap.set([eyebrow,...titleLines,...copy,route],{clearProps:'transform,opacity'});
       }
     })
       .to(brief,{clipPath:'inset(0 0 0% 0)',duration:1.15,ease:'power4.inOut'},0)
       .to(eyebrow,{opacity:1,x:0,duration:.5},.16)
       .to(titleLines,{yPercent:0,duration:.85,stagger:.13},.25)
       .to(copy,{opacity:1,y:0,duration:.75,stagger:.14},.5)
-      .to(route.children[0],{opacity:1,x:0,duration:.45},.95)
-      .to(route.querySelector('.route-line'),{scaleX:1,duration:.65,ease:'power2.inOut'},1.15)
-      .to(route.children[2],{opacity:1,x:0,duration:.45},1.55);
+      .to(route,{opacity:1,y:0,duration:.6},1.1);
   });
   mm.add({desktop:'(min-width: 768px)',mobile:'(max-width: 767px)',motion:'(prefers-reduced-motion: no-preference)'}, context => {
     if (!context.conditions.motion) return;
