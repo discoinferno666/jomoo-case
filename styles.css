@@ -198,3 +198,13 @@ main{position:relative}
 .process-cta{grid-column:1/-1;justify-self:end;min-height:44px;padding:12px 20px;border-radius:10px;font-family:Onest,Arial,sans-serif;font-size:14px;font-weight:400;line-height:20px}
 .has-transform .process-cta{position:absolute;right:24px;bottom:24px;z-index:3}
 @media(max-width:767px){.brief.chapter{margin-top:40px}}
+
+/* Review: use the stage names as the section headings. */
+.section-title{font-size:clamp(32px,3.335vw,48px);line-height:1.125;color:var(--blue);text-wrap:balance}
+.storyboard .section-title{color:var(--white)}
+.features-intro .features-description{font-size:var(--body-size);line-height:1.41667;max-width:none;margin-top:0}
+.features-intro .eyebrow{letter-spacing:.01em}
+@media(max-width:767px){
+ .section-title{font-size:30px;line-height:1.2;overflow-wrap:anywhere}
+ .features-intro .features-description{font-size:22px;line-height:1.4}
+}

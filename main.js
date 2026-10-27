@@ -288,27 +288,24 @@
     const brief = document.querySelector('.brief');
     const titleLines = brief.querySelectorAll('.brief-title-line>span');
     const copy = brief.querySelectorAll('.brief-copy>.body,.brief-copy>.caption');
-    const route = brief.querySelector('.route');
     const eyebrow = brief.querySelector('.eyebrow');
     gsap.set(brief,{clipPath:'inset(0 0 98% 0)'});
     gsap.set(eyebrow,{opacity:0,x:-16});
     gsap.set(titleLines,{yPercent:115});
     gsap.set(copy,{opacity:0,y:20});
-    gsap.set(route,{opacity:0,y:10});
-    // The brief unfolds like a dossier; its location note appears last.
+    // The brief unfolds like a dossier, followed by the heading and copy.
     gsap.timeline({
       defaults:{ease:'power3.out'},
       scrollTrigger:{id:'brief-reveal',trigger:brief,start:'top 82%',once:true},
       onComplete:() => {
         gsap.set(brief,{clearProps:'clipPath'});
-        gsap.set([eyebrow,...titleLines,...copy,route],{clearProps:'transform,opacity'});
+        gsap.set([eyebrow,...titleLines,...copy],{clearProps:'transform,opacity'});
       }
     })
       .to(brief,{clipPath:'inset(0 0 0% 0)',duration:1.15,ease:'power4.inOut'},0)
       .to(eyebrow,{opacity:1,x:0,duration:.5},.16)
       .to(titleLines,{yPercent:0,duration:.85,stagger:.13},.25)
-      .to(copy,{opacity:1,y:0,duration:.75,stagger:.14},.5)
-      .to(route,{opacity:1,y:0,duration:.6},1.1);
+      .to(copy,{opacity:1,y:0,duration:.75,stagger:.14},.5);
   });
   mm.add({desktop:'(min-width: 768px)',mobile:'(max-width: 767px)',motion:'(prefers-reduced-motion: no-preference)'}, context => {
     if (!context.conditions.motion) return;
